@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyParking.Core", "MyParking.Core\MyParking.Core.csproj", "{94442378-BC25-4680-A9A0-D1C4B1A21A3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyParking.Core.Test", "MyParking.Core.Test\MyParking.Core.Test.csproj", "{A66A98C4-68E0-468B-B722-EBB661504E02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyParking.Droid", "MyParking.Droid\MyParking.Droid.csproj", "{2F96F46F-65F2-467C-965C-92FD2D092996}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{94442378-BC25-4680-A9A0-D1C4B1A21A3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94442378-BC25-4680-A9A0-D1C4B1A21A3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94442378-BC25-4680-A9A0-D1C4B1A21A3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94442378-BC25-4680-A9A0-D1C4B1A21A3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A66A98C4-68E0-468B-B722-EBB661504E02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A66A98C4-68E0-468B-B722-EBB661504E02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A66A98C4-68E0-468B-B722-EBB661504E02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A66A98C4-68E0-468B-B722-EBB661504E02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F96F46F-65F2-467C-965C-92FD2D092996}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F96F46F-65F2-467C-965C-92FD2D092996}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F96F46F-65F2-467C-965C-92FD2D092996}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F96F46F-65F2-467C-965C-92FD2D092996}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="app_name">MyParking.Droid</string>
+    <string name="action_settings">Settings</string>
+    
+    <string name="licensePlate">Placa</string>
+    <string name="dateOfEntry">Fecha de ingreso</string>
+    <string name="typeVehicle">Tipo</string>
+    <string name="displacement">Cilindraje</string>
+    <string name="action_checkOut">Acción</string>
+    <string name="messageNotExistVehicle">No existe vehiculo con la placa que esta buscando.</string>
+    <string name="button_text_register">Registrar</string>
+
+    
+</resources>
