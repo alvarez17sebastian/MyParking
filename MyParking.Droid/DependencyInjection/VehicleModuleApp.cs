@@ -8,8 +8,6 @@ namespace MyParking.Droid.DependencyInjection
         public override void Load()
         {
             this.Bind<ParkingLot>().ToSelf().InSingletonScope();
-            //this.Bind<ParkingLot>().To<ParkingLot>().InSingletonScope();
-
         }
     }
 }

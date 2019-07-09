@@ -15,7 +15,6 @@ namespace Parking.Core.DomainModels
 
         public ParkingLot()
         {
-            //this.vehicleDatabaseRepository = vehicleDatabaseRepository;
             this.vehicleDatabaseRepository = ServiceLocator.Get<IVehicleDatabaseRepository>();
         }
 
@@ -79,13 +78,13 @@ namespace Parking.Core.DomainModels
             }
         }
 
-        private bool CheckAvailabilityCars()
+        public bool CheckAvailabilityCars()
         {
             int numberOfCars = vehicleDatabaseRepository.GetVehiclesForType(ParkingConstants.CarType).Count;
             return numberOfCars <= ParkingConstants.AvailableCellCar;
         }
 
-        private bool CheckAvailabilityMotorBike()
+        public bool CheckAvailabilityMotorBike()
         {
             int numberOfMotorBike = vehicleDatabaseRepository.GetVehiclesForType(ParkingConstants.MotorBikeType).Count;
             return numberOfMotorBike <= ParkingConstants.AvailableCellMotorBike;
