@@ -1,7 +1,6 @@
 ﻿using System;
+using MyParking.Core.Repository;
 using Ninject.Modules;
-using Parking.core.Repository.Mock;
-using Parking.Core.Repository;
 
 namespace MyParking.Core.DependencyInjection
 {
@@ -10,7 +9,8 @@ namespace MyParking.Core.DependencyInjection
         public override void Load()
         {
 #if DEBUG
-            this.Bind<IVehicleDatabaseRepository>().To<MockRealmVehicleDatabaseManager>().InSingletonScope();
+            //this.Bind<IVehicleDatabaseRepository>().To<MockRealmVehicleDatabaseManager>().InSingletonScope();
+            this.Bind<IVehicleDatabaseRepository>().To<RealmVehicleDatabaseManager>().InSingletonScope();
 
 #elif RELEASE
             this.Bind<IVehicleDatabaseRepository>().To<RealmVehicleDatabaseManager>().InSingletonScope();

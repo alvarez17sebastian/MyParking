@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Parking.Core.CustomExceptions
+namespace MyParking.Core.CustomExceptions
 {
     public class ParkingDomainBusinessException:Exception
     {

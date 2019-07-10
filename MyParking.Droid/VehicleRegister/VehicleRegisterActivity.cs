@@ -5,11 +5,11 @@ using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
+using MyParking.core.Dto;
+using MyParking.Core.CustomExceptions;
 using MyParking.Core.DependencyInjection;
+using MyParking.Core.DomainModels;
 using MyParking.Droid;
-using Parking.core.Dto;
-using Parking.Core.CustomExceptions;
-using Parking.Core.DomainModels;
 using static Android.Views.View;
 
 namespace Parking.Droid

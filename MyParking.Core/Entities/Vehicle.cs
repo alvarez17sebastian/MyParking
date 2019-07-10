@@ -1,7 +1,7 @@
 ﻿using System;
 using Realms;
 
-namespace Parking.Core
+namespace MyParking.Core
 {
     public class Vehicle:RealmObject
     {

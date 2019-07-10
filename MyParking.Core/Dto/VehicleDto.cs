@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Parking.core.Dto
+namespace MyParking.core.Dto
 {
     public class VehicleDto
     {
@@ -7,6 +7,11 @@ namespace Parking.core.Dto
         public string Type { set; get; }
         public int Displacement { set; get; }
         public DateTimeOffset DateOfEntry { set; get; }
+
+        public VehicleDto()
+        {
+
+        }
 
         public VehicleDto(string licensePlate, string type, int displacement, DateTimeOffset dateOfEntry)
         {

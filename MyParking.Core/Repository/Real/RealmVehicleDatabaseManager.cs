@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Parking.core.Dto;
+using MyParking.core.Dto;
+using MyParking.Core.Mapping;
 using Realms;
 
-namespace Parking.Core.Repository
+namespace MyParking.Core.Repository
 {
     public class RealmVehicleDatabaseManager:IVehicleDatabaseRepository
     {

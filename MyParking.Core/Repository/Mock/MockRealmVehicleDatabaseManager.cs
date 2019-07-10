@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Parking.core.Dto;
-using Parking.Core;
-using Parking.Core.Repository;
+using MyParking.core.Dto;
+using MyParking.Core;
+using MyParking.Core.Repository;
 
-namespace Parking.core.Repository.Mock
+namespace MyParking.core.Repository.Mock
 {
     public class MockRealmVehicleDatabaseManager : IVehicleDatabaseRepository
     {

@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Parking.Core.Helpers
+namespace MyParking.Core.Helpers
 {
     public class DateHelper
     {

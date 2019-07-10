@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Parking.core.Dto;
+using MyParking.core.Dto;
 
-namespace Parking.Core.Repository
+namespace MyParking.Core.Repository
 {
     public interface IVehicleDatabaseRepository
     {

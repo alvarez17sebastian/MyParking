@@ -1,5 +1,5 @@
-﻿using Ninject.Modules;
-using Parking.Core.DomainModels;
+﻿using MyParking.Core.DomainModels;
+using Ninject.Modules;
 
 namespace MyParking.Droid.DependencyInjection
 {

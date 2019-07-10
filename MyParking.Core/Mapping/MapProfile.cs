@@ -1,7 +1,6 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using AutoMapper;
-using Parking.core.Dto;
-using Parking.Core;
+using MyParking.core.Dto;
 
 namespace MyParking.Core.Mapping
 {

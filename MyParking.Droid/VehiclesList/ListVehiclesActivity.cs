@@ -10,9 +10,9 @@ using Android.Views;
 using Android.Content;
 using Android.Widget;
 using MyParking.Droid;
-using Parking.core.Dto;
 using MyParking.Droid.DependencyInjection;
-using Parking.Core.DomainModels;
+using MyParking.Core.DomainModels;
+using MyParking.core.Dto;
 
 namespace Parking.Droid
 {

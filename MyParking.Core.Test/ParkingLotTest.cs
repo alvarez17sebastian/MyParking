@@ -1,11 +1,11 @@
 using System;
+using MyParking.core.Dto;
+using MyParking.core.Repository.Mock;
+using MyParking.Core.Constants;
+using MyParking.Core.CustomExceptions;
 using MyParking.Core.DependencyInjection;
-using Parking.core.Dto;
-using Parking.core.Repository.Mock;
-using Parking.Core.Constants;
-using Parking.Core.CustomExceptions;
-using Parking.Core.DomainModels;
-using Parking.Core.Repository;
+using MyParking.Core.DomainModels;
+using MyParking.Core.Repository;
 using Xunit;
 
 namespace MyParking.Core.Test

@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using MyParking.core.Dto;
+using MyParking.Core.Constants;
+using MyParking.Core.CustomExceptions;
 using MyParking.Core.DependencyInjection;
-using Parking.core.Dto;
-using Parking.Core.Constants;
-using Parking.Core.CustomExceptions;
-using Parking.Core.Helpers;
-using Parking.Core.Repository;
+using MyParking.Core.Helpers;
+using MyParking.Core.Mapping;
+using MyParking.Core.Repository;
 
-namespace Parking.Core.DomainModels
+namespace MyParking.Core.DomainModels
 {
     public class ParkingLot
     {

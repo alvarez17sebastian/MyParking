@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using Android.Support.V7.Widget;
 using Android.Views;
+using MyParking.core.Dto;
 using MyParking.Droid;
-using Parking.core.Dto;
+
 
 namespace Parking.Droid.ListVehicles
 {
