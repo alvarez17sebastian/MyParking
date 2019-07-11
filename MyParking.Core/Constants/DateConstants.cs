@@ -1,9 +1,9 @@
 ﻿using System;
 namespace MyParking.Core.Constants
 {
-    public class DateConstants
+    public static class DateConstants
     {
-        public const int SundayDay = 0;
-        public const int MondayDay = 1;
+        public static readonly int SundayDay = 0;
+        public static readonly int MondayDay = 1;
     }
 }

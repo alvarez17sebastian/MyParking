@@ -5,6 +5,7 @@ using MyParking.Core.Constants;
 using MyParking.Core.CustomExceptions;
 using MyParking.Core.DependencyInjection;
 using MyParking.Core.DomainModels;
+using MyParking.Core.Mapping;
 using MyParking.Core.Repository;
 using Xunit;
 
@@ -15,6 +16,7 @@ namespace MyParking.Core.Test
         public ParkingLotTest()
         {
             ServiceLocator.SetupKernel();
+
         }
 
         private IVehicleDatabaseRepository repository = new MockRealmVehicleDatabaseManager();
