@@ -9,7 +9,7 @@ namespace MyParking.Core.DependencyInjection
         public override void Load()
         {
 #if DEBUG
-            this.Bind<IVehicleDatabaseRepository>().To<RealmVehicleDatabaseManager>().InSingletonScope();
+            this.Bind<IVehicleDatabaseRepository>().To<MockRealmVehicleDatabaseManager>().InSingletonScope();
 
 #elif RELEASE
             this.Bind<IVehicleDatabaseRepository>().To<RealmVehicleDatabaseManager>().InSingletonScope();
