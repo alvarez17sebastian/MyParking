@@ -14,7 +14,8 @@ namespace Parking.Droid.ListVehicles
         public TextView tvDisplacement;
         public TextView tvDateOfEntry;
         public ImageView imageViewEditVehicle;
-        private ImageView imageViewCheckOut;
+        public ImageView imageViewCheckOut;
+        public ImageView imageViewDeleteVehicle;
 
         public ViewHolderVehiclesAdapter(View itemView,VehiclesAdapter vehiclesAdapter) : base(itemView)
         {
@@ -30,12 +31,23 @@ namespace Parking.Droid.ListVehicles
             tvDateOfEntry = itemView.FindViewById<TextView>(Resource.Id.textView_entryDate_vehiclesAdapter);
             imageViewEditVehicle = itemView.FindViewById<ImageView>(Resource.Id.imageView_editVehicle_vehiclesAdapter);
             imageViewCheckOut = itemView.FindViewById<ImageView>(Resource.Id.imageView_registerCheckOut_vehiclesAdapter);
+            imageViewDeleteVehicle = itemView.FindViewById<ImageView>(Resource.Id.imageView_deleteVehicle_vehiclesAdapter);
 
         }
 
         private void SetListeners()
         {
-            imageViewCheckOut.Click += (sender, e) => vehiclesAdapter.ClickItemAdapter(ActionsCode.ACTION_REGISTER_CHECKOUT,vehiclesAdapter.Vehicles[LayoutPosition]);
+            imageViewCheckOut.Click += (sender, e) => vehiclesAdapter.
+                                                      ClickItemAdapter(ActionsCode.ACTION_REGISTER_CHECKOUT,
+                                                      vehiclesAdapter.Vehicles[LayoutPosition]);
+
+            imageViewEditVehicle.Click += (sender, e) => vehiclesAdapter.
+                                                         ClickItemAdapter(ActionsCode.ACTION_EDIT_VEHICLE,
+                                                         vehiclesAdapter.Vehicles[LayoutPosition]);
+
+            imageViewDeleteVehicle.Click += (sender, e) => vehiclesAdapter.
+                                                           ClickItemAdapter(ActionsCode.ACTION_DELETE_VEHICLE,
+                                                           vehiclesAdapter.Vehicles[LayoutPosition]);
         }
     }
 }

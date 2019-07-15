@@ -10,6 +10,11 @@
     <string name="action_checkOut">Acción</string>
     <string name="messageNotExistVehicle">No existe vehiculo con la placa que esta buscando.</string>
     <string name="button_text_register">Registrar</string>
+    
+    <string-array name = "vehicleTypes">
+        <item>Carro</item>
+        <item>Moto</item>
+    </string-array>
 
     
 </resources>

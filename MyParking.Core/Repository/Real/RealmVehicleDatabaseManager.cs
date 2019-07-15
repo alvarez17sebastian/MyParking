@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using MyParking.core.Dto;
+using MyParking.Core.CustomExceptions;
 using MyParking.Core.Mapping;
 using Realms;
 
 namespace MyParking.Core.Repository
 {
-    public class RealmVehicleDatabaseManager:IVehicleDatabaseRepository
+    public class RealmVehicleDatabaseManager : IVehicleDatabaseRepository
     {
         private Realm realmDatabase;
 
-        private const int DatabaseVersion = 1;
+        private const int DatabaseVersion = 2;
 
         public RealmVehicleDatabaseManager()
         {
@@ -27,7 +28,9 @@ namespace MyParking.Core.Repository
         public List<VehicleDto> GetAllVehicles()
         {
             List<Vehicle> vehicles = new List<Vehicle>(realmDatabase.All<Vehicle>());
+            //List<VehicleDto> vehiclesDtosAux = VehicleMapping.ListVehicleToListVehicleDto(vehicles);
             return GetVehiclesDto(vehicles);
+            //return vehiclesDtosAux;
         }
 
         public List<VehicleDto> GetVehicles(string plate)
@@ -46,14 +49,21 @@ namespace MyParking.Core.Repository
 
         public bool SaveVehicle(VehicleDto vehicleDto)
         {
-            realmDatabase.Write(() =>
+            try
             {
-                Vehicle vehicle = GetVehicleEntity(vehicleDto);
-                realmDatabase.Add(vehicle);
-            });
+                realmDatabase.Write(() =>
+                {
+                    Vehicle vehicle = GetVehicleEntity(vehicleDto);
+                    realmDatabase.Add(vehicle);
+                });
+            }
+            catch (Exception ex)
+            {
+                throw new DatabaseException(ex.Message);
+            }
             return true;
         }
-        
+
         public bool UpdateVehicle(VehicleDto vehicleDto)
         {
             //TODO: Empty method.

@@ -1,4 +1,6 @@
 ﻿using System;
+using Realms;
+
 namespace MyParking.core.Dto
 {
     public class VehicleDto

@@ -11,6 +11,7 @@ namespace Parking.Droid.ListVehicles
     public class VehiclesAdapter : RecyclerView.Adapter
     {
         public List<VehicleDto> Vehicles { get; internal set; }
+
         public Action<int,VehicleDto> ClickItemAdapter { get; set; }
 
         public VehiclesAdapter()

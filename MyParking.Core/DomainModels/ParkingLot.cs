@@ -32,6 +32,11 @@ namespace MyParking.Core.DomainModels
             return resultDelete;
         }
 
+        public bool DeleteVehicle(VehicleDto vehicleDto)
+        {
+            return vehicleDatabaseRepository.DeleteVehicle(vehicleDto);
+        }
+
         public int CalculatePaymentVehicle(VehicleDto vehicleDto)
         {
             int numberOfHours = DateHelper.GetHours(vehicleDto.DateOfEntry);

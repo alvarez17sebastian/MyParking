@@ -6,6 +6,7 @@ using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
 using MyParking.core.Dto;
+using MyParking.Core.Constants;
 using MyParking.Core.CustomExceptions;
 using MyParking.Core.DependencyInjection;
 using MyParking.Core.DomainModels;
@@ -14,14 +15,14 @@ using static Android.Views.View;
 
 namespace Parking.Droid
 {
-    [Activity(Label = "RegisterVehicleActivity")]
+    [Activity(Label = "Registro de vehículo",Theme = "@style/AppTheme")]
     public class VehicleRegisterActivity : Activity,IOnClickListener
     {
         #region Statement of user interface
         private Button buttonRegisterVehicle;
         private TextInputEditText textInputEditTextLicensePlate;
-        private TextInputEditText textInputEditTextTypeVehicle;
         private TextInputEditText textInputEditTextDisplacement;
+        private Spinner spinnerVehicleTypes;
         #endregion
 
         #region Statement of business logic class
@@ -45,8 +46,8 @@ namespace Parking.Droid
         {
             buttonRegisterVehicle = FindViewById<Button>(Resource.Id.button_RegisterVehicle_activityRegisterVehicle);
             textInputEditTextLicensePlate = FindViewById<TextInputEditText>(Resource.Id.textInputEditText_LicensePlate_activityVehicleRegister);
-            textInputEditTextTypeVehicle = FindViewById<TextInputEditText>(Resource.Id.textInputEditText_TypeVehicle_activityVehicleRegister);
             textInputEditTextDisplacement = FindViewById<TextInputEditText>(Resource.Id.textInputEditText_Displacement_activityVehicleRegister);
+            spinnerVehicleTypes = FindViewById<Spinner>(Resource.Id.spinner_typeVehicle_activityVehicleRegister);
         }
 
         private void InitBusinessLogic()
@@ -75,15 +76,33 @@ namespace Parking.Droid
         private VehicleDto CreateVehicle()
         {
             string plate = textInputEditTextLicensePlate.Text;
-            string vehicleType = textInputEditTextTypeVehicle.Text;
+            string vehicleType = getVehicleTypeKey();
             string strDisplacement = textInputEditTextDisplacement.Text;
             int displacement = !InputIsNullOrEmpty(strDisplacement)? int.Parse(strDisplacement):0;
             return new VehicleDto(plate, vehicleType, displacement, DateTime.Now);
         }
 
+        private string getVehicleTypeKey()
+        {
+            string valueSpinnerVehicleType = spinnerVehicleTypes.SelectedItem.ToString();
+            if (valueSpinnerVehicleType.Equals("Carro"))
+            {
+                return ParkingConstants.CarType;
+            }
+            else
+            {
+                return ParkingConstants.MotorBikeType;
+            }
+        }
+
         private bool InputIsNullOrEmpty(string strInput)
         {
             return string.IsNullOrEmpty(strInput);
+        }
+
+        private void LoadSpinnerVehicleTypes()
+        {
+            string[] vehicleTypes = Resources.GetStringArray(Resource.Array.vehicleTypes);
         }
 
         public void OnClick(View v)
@@ -92,6 +111,7 @@ namespace Parking.Droid
             {
                 case Resource.Id.button_RegisterVehicle_activityRegisterVehicle:
                     RegisterVehicle();
+                    Finish();
                     break;
             }
         }

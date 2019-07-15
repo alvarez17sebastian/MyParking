@@ -3,7 +3,7 @@ using Realms;
 
 namespace MyParking.Core
 {
-    public class Vehicle:RealmObject
+    public class Vehicle : RealmObject
     {
         [PrimaryKey]
         public string Plate { set; get; }

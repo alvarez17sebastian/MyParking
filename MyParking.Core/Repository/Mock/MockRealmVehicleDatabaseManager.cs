@@ -15,7 +15,9 @@ namespace MyParking.core.Repository.Mock
 
         public List<VehicleDto> GetAllVehicles()
         {
+            //List<VehicleDto> vehiclesDtos = VehicleMapping.ListVehicleToListVehicleDto(vehicles);
             return GetVehiclesDto(vehicles);
+            //return vehiclesDtos;
         }
 
         public List<VehicleDto> GetVehicles(string plate)

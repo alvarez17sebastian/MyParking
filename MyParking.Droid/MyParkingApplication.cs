@@ -3,6 +3,7 @@ using System;
 using Android.App;
 using Android.Runtime;
 using MyParking.Core.DependencyInjection;
+using MyParking.Core.Mapping;
 using MyParking.Droid.DependencyInjection;
 
 namespace MyParking.Droid
@@ -17,9 +18,10 @@ namespace MyParking.Droid
         public override void OnCreate()
         {
             base.OnCreate();
+
             ServiceLocator.SetupKernel();
             ServiceLocatorApp.SetupKernel();
-
+            MapperService.InitAutomapper();
         }
     }
 }

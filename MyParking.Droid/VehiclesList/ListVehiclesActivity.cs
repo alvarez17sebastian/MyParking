@@ -102,14 +102,20 @@ namespace Parking.Droid
             switch (action)
             {
                 case ActionsCode.ACTION_REGISTER_CHECKOUT:
-                    //int payment = parking.CalculatePaymentVehicle(null);
-                    Toast.MakeText(this, "Checkout", ToastLength.Short).Show();
+                    int payment = parking.CalculatePaymentVehicle(vehicleDto);
+                    Toast.MakeText(this, "pago: " + payment, ToastLength.Short).Show();
                     break;
                 case ActionsCode.ACTION_EDIT_VEHICLE:
                     Toast.MakeText(this, "Acción de editar no disponible temporalmente", ToastLength.Short).Show();
                     break;
                 case ActionsCode.ACTION_DELETE_VEHICLE:
-                    Toast.MakeText(this, "Acción de borrado no disponible temporalmente.", ToastLength.Short).Show();
+                    if (parking.DeleteVehicle(vehicleDto))
+                    {
+                        Toast.MakeText(this, "Vehiculo eliminado", ToastLength.Short).Show();
+                        vehiclesAdapter.Delete(vehicleDto);
+                    }
+                    else
+                        Toast.MakeText(this, "Error al eliminar vehiculo", ToastLength.Short).Show();
                     break;
                 default:
                     break;
