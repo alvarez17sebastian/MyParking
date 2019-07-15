@@ -1,7 +1,6 @@
 ﻿using Android.App;
 using Android.OS;
 using Android.Support.V7.App;
-using System;
 using Android.Support.V7.Widget;
 using Android.Support.Design.Widget;
 using Parking.Droid.ListVehicles;
@@ -16,24 +15,25 @@ using MyParking.core.Dto;
 
 namespace Parking.Droid
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
-    public class ListVehiclesActivity : AppCompatActivity,IOnClickListener
+    [Activity(Label = "Listado de vehículos", Theme = "@style/AppTheme", MainLauncher = true)]
+    public class ListVehiclesActivity : AppCompatActivity, IOnClickListener
     {
         #region Statement of user interface
 
         private RecyclerView rvVehicles;
         private FloatingActionButton fabRegisterVehicle;
+        private VehiclesAdapter vehiclesAdapter;
 
         #endregion
-
-        private VehiclesAdapter vehiclesAdapter;
 
         #region Statement of business logic class
 
-        ParkingLot parking;
+        private ParkingLot parking;
+        private VehicleDto vehicleDto = null;
 
         #endregion
 
+        #region Lifecycle
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -54,21 +54,25 @@ namespace Parking.Droid
             base.OnResume();
             LoadVehicles();
         }
+        #endregion
 
+        #region Initializations
         private void InitUserInterface()
         {
             rvVehicles = FindViewById<RecyclerView>(Resource.Id.recyclerView_vehicles);
             fabRegisterVehicle = FindViewById<FloatingActionButton>(Resource.Id.floatButton_vehicleAdd);
         }
 
-        private void SetEventsListener()
-        {
-            fabRegisterVehicle.SetOnClickListener(this);
-        }
-
         private void InitAdapter()
         {
             vehiclesAdapter = new VehiclesAdapter(AdapterActions);
+        }
+        #endregion
+
+        #region Activity behaviors
+        private void SetEventsListener()
+        {
+            fabRegisterVehicle.SetOnClickListener(this);
         }
 
         private void SetupRecyclerView()
@@ -84,42 +88,41 @@ namespace Parking.Droid
             vehiclesAdapter.AddList(listVehicles);
         }
 
-        public void ClickItem(int action, int position, VehicleDto vehicle)
-        {
-            switch (action)
-            {
-                case ActionsCode.ACTION_REGISTER_CHECKOUT:
-                    //int payment = parking.CalculatePaymentVehicle(vehicle);
-                    //parking.RegisterCheckOutVehicle(vehicle);
-                    //vehiclesAdapter.Delete(vehicle);
-                    //Toast.MakeText(this, payment.ToString(), ToastLength.Short).Show();
-                    break;
-            }
-        }
-
-        public void AdapterActions(int action,VehicleDto vehicleDto)
+        public void AdapterActions(int action, VehicleDto vehicleDto)
         {
             switch (action)
             {
                 case ActionsCode.ACTION_REGISTER_CHECKOUT:
                     int payment = parking.CalculatePaymentVehicle(vehicleDto);
-                    Toast.MakeText(this, "pago: " + payment, ToastLength.Short).Show();
+                    this.vehicleDto = vehicleDto;
+                    CustomDialog customDialog = new CustomDialog();
+                    customDialog.ShowCustomDialogInformationPayment(this, payment.ToString(), ConfirmCheckout);
                     break;
                 case ActionsCode.ACTION_EDIT_VEHICLE:
                     Toast.MakeText(this, "Acción de editar no disponible temporalmente", ToastLength.Short).Show();
                     break;
                 case ActionsCode.ACTION_DELETE_VEHICLE:
-                    if (parking.DeleteVehicle(vehicleDto))
-                    {
-                        Toast.MakeText(this, "Vehiculo eliminado", ToastLength.Short).Show();
-                        vehiclesAdapter.Delete(vehicleDto);
-                    }
-                    else
-                        Toast.MakeText(this, "Error al eliminar vehiculo", ToastLength.Short).Show();
+                    DeleteVehicle(vehicleDto);
                     break;
                 default:
                     break;
             }
+        }
+
+        private void ConfirmCheckout()
+        {
+            DeleteVehicle(this.vehicleDto);
+        }
+
+        private void DeleteVehicle(VehicleDto vehicleDtoParam)
+        {
+            if (parking.DeleteVehicle(vehicleDtoParam))
+            {
+                Toast.MakeText(this, "Vehiculo eliminado", ToastLength.Short).Show();
+                vehiclesAdapter.Delete(vehicleDtoParam);
+            }
+            else
+                Toast.MakeText(this, "Error al eliminar vehiculo", ToastLength.Short).Show();
         }
 
         private void ChangeActivity()
@@ -139,5 +142,6 @@ namespace Parking.Droid
                     break;
             }
         }
+        #endregion
     }
 }

@@ -31,6 +31,7 @@ namespace Parking.Droid
 
         #endregion
 
+        #region Lifecycle
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -39,9 +40,10 @@ namespace Parking.Droid
             InitUserInterface();
             SetEventsListener();
             InitBusinessLogic();
-
         }
+        #endregion
 
+        #region Initializations
         private void InitUserInterface()
         {
             buttonRegisterVehicle = FindViewById<Button>(Resource.Id.button_RegisterVehicle_activityRegisterVehicle);
@@ -54,12 +56,9 @@ namespace Parking.Droid
         {
             parking = ServiceLocator.Get<ParkingLot>();
         }
+        #endregion
 
-        private void SetEventsListener()
-        {
-            buttonRegisterVehicle.SetOnClickListener(this);
-        }
-
+        #region Activity behaviors
         private void RegisterVehicle()
         {
             try
@@ -76,13 +75,30 @@ namespace Parking.Droid
         private VehicleDto CreateVehicle()
         {
             string plate = textInputEditTextLicensePlate.Text;
-            string vehicleType = getVehicleTypeKey();
+            string vehicleType = GetVehicleTypeKey();
             string strDisplacement = textInputEditTextDisplacement.Text;
             int displacement = !InputIsNullOrEmpty(strDisplacement)? int.Parse(strDisplacement):0;
             return new VehicleDto(plate, vehicleType, displacement, DateTime.Now);
         }
 
-        private string getVehicleTypeKey()
+        private bool ValidateFields()
+        {
+            if (string.IsNullOrEmpty(textInputEditTextLicensePlate.Text))
+            {
+                textInputEditTextLicensePlate.Error = MessageConstants.RequiredField;
+                return false;
+            }else if (string.IsNullOrEmpty(textInputEditTextDisplacement.Text))
+            {
+                textInputEditTextDisplacement.Error = MessageConstants.RequiredField;
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private string GetVehicleTypeKey()
         {
             string valueSpinnerVehicleType = spinnerVehicleTypes.SelectedItem.ToString();
             if (valueSpinnerVehicleType.Equals("Carro"))
@@ -100,20 +116,25 @@ namespace Parking.Droid
             return string.IsNullOrEmpty(strInput);
         }
 
-        private void LoadSpinnerVehicleTypes()
+        private void SetEventsListener()
         {
-            string[] vehicleTypes = Resources.GetStringArray(Resource.Array.vehicleTypes);
+            buttonRegisterVehicle.SetOnClickListener(this);
         }
+
 
         public void OnClick(View v)
         {
             switch (v.Id)
             {
                 case Resource.Id.button_RegisterVehicle_activityRegisterVehicle:
-                    RegisterVehicle();
-                    Finish();
+                    if (ValidateFields())
+                    {
+                        RegisterVehicle();
+                        Finish();
+                    }
                     break;
             }
         }
+        #endregion
     }
 }
