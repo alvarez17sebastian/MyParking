@@ -12,7 +12,7 @@ namespace MyParking.Droid.DependencyInjection
         {
             if (kernel == null)
             {
-                var settings = new NinjectSettings() { LoadExtensions = false };
+                var settings = new NinjectSettings { LoadExtensions = false };
                 kernel = new StandardKernel(settings);
                 kernel.Load(Assembly.GetExecutingAssembly());
             }

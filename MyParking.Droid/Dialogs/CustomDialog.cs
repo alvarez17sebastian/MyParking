@@ -11,7 +11,7 @@ namespace MyParking.Droid
         public void ShowCustomDialogInformationPayment(Activity activity,
                                                        string payment,
                                                        Action confirmAction, 
-                                                       Action cancelAction = null)
+                                                       Action cancelAction)
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
             View view = activity.LayoutInflater.Inflate(Resource.Layout.custom_dialog_payment, null);

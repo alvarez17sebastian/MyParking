@@ -12,6 +12,7 @@ using MyParking.Droid;
 using MyParking.Droid.DependencyInjection;
 using MyParking.Core.DomainModels;
 using MyParking.core.Dto;
+using MyParking.Core.Constants;
 
 namespace Parking.Droid
 {
@@ -96,15 +97,13 @@ namespace Parking.Droid
                     int payment = parking.CalculatePaymentVehicle(vehicleDto);
                     this.vehicleDto = vehicleDto;
                     CustomDialog customDialog = new CustomDialog();
-                    customDialog.ShowCustomDialogInformationPayment(this, payment.ToString(), ConfirmCheckout);
+                    customDialog.ShowCustomDialogInformationPayment(this, payment.ToString(), ConfirmCheckout,null);
                     break;
                 case ActionsCode.ACTION_EDIT_VEHICLE:
-                    Toast.MakeText(this, "Acción de editar no disponible temporalmente", ToastLength.Short).Show();
+                    Toast.MakeText(this, MessageConstants.NotAvailableEdit, ToastLength.Short).Show();
                     break;
                 case ActionsCode.ACTION_DELETE_VEHICLE:
                     DeleteVehicle(vehicleDto);
-                    break;
-                default:
                     break;
             }
         }
