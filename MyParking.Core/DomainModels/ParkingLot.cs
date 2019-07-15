@@ -39,7 +39,7 @@ namespace MyParking.Core.DomainModels
 
         public int CalculatePaymentVehicle(VehicleDto vehicleDto)
         {
-            int numberOfHours = DateHelper.GetHours(vehicleDto.DateOfEntry);
+            int numberOfHours = CurrentDateManagement.GetHours(vehicleDto.DateOfEntry);
             return CalculateValueToPay(numberOfHours, vehicleDto);
         }
 
@@ -53,7 +53,7 @@ namespace MyParking.Core.DomainModels
         {
             if (VerifyStartWordLicensePlate(licensePlate))
             {
-                if (DateHelper.GetCurrentDay(dateOfEntry) != DateConstants.SundayDay && DateHelper.GetCurrentDay(dateOfEntry) != DateConstants.MondayDay)
+                if (CurrentDateManagement.GetCurrentDay(dateOfEntry) != DateConstants.SundayDay && CurrentDateManagement.GetCurrentDay(dateOfEntry) != DateConstants.MondayDay)
                 {
                     throw new ParkingDomainBusinessException(MessageConstants.NotAuthorized);
                 }
