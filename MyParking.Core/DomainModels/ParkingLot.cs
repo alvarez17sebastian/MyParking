@@ -5,14 +5,13 @@ using MyParking.Core.Constants;
 using MyParking.Core.CustomExceptions;
 using MyParking.Core.DependencyInjection;
 using MyParking.Core.Helpers;
-using MyParking.Core.Mapping;
 using MyParking.Core.Repository;
 
 namespace MyParking.Core.DomainModels
 {
     public class ParkingLot
     {
-        private IVehicleDatabaseRepository vehicleDatabaseRepository;
+        private readonly IVehicleDatabaseRepository vehicleDatabaseRepository;
 
         public ParkingLot()
         {

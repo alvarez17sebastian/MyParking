@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using MyParking.core.Dto;
 using MyParking.Core.CustomExceptions;
-using MyParking.Core.Mapping;
 using Realms;
 
 namespace MyParking.Core.Repository

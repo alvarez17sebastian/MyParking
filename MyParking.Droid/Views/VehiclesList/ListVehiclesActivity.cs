@@ -17,7 +17,7 @@ using MyParking.Core.Constants;
 namespace Parking.Droid
 {
     [Activity(Label = "Listado de vehículos", Theme = "@style/AppTheme", MainLauncher = true)]
-    public class ListVehiclesActivity : AppCompatActivity, IOnClickListener
+    public class ListVehiclesActivity : AppCompatActivity
     {
         #region Statement of user interface
 
@@ -35,17 +35,16 @@ namespace Parking.Droid
         #endregion
 
         #region Lifecycle
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
 
             parking = ServiceLocatorApp.Get<ParkingLot>();
 
             InitUserInterface();
             InitAdapter();
-            SetEventsListener();
             SetupRecyclerView();
 
         }
@@ -55,25 +54,30 @@ namespace Parking.Droid
             base.OnResume();
             LoadVehicles();
         }
+
         #endregion
 
         #region Initializations
+
         private void InitUserInterface()
         {
             rvVehicles = FindViewById<RecyclerView>(Resource.Id.recyclerView_vehicles);
             fabRegisterVehicle = FindViewById<FloatingActionButton>(Resource.Id.floatButton_vehicleAdd);
+            fabRegisterVehicle.Click += FabRegisterVehicle_Click;
         }
 
         private void InitAdapter()
         {
             vehiclesAdapter = new VehiclesAdapter(AdapterActions);
         }
+
         #endregion
 
         #region Activity behaviors
-        private void SetEventsListener()
+
+        private void FabRegisterVehicle_Click(object sender, System.EventArgs e)
         {
-            fabRegisterVehicle.SetOnClickListener(this);
+            ChangeActivity();
         }
 
         private void SetupRecyclerView()
@@ -130,17 +134,6 @@ namespace Parking.Droid
             StartActivity(intent);
         }
 
-        public void OnClick(View v)
-        {
-            switch (v.Id)
-            {
-                case Resource.Id.floatButton_vehicleAdd:
-                    ChangeActivity();
-                    break;
-                default:
-                    break;
-            }
-        }
         #endregion
     }
 }

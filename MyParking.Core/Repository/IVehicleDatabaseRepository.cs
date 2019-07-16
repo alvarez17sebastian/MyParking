@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using MyParking.core.Dto;
 
 namespace MyParking.Core.Repository
 {
     public interface IVehicleDatabaseRepository
     {
-        //Behaviors methods
+
         List<VehicleDto> GetAllVehicles();
 
         List<VehicleDto> GetVehicles(string plate);

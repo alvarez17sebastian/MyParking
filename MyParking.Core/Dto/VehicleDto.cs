@@ -1,14 +1,13 @@
 ﻿using System;
-using Realms;
 
 namespace MyParking.core.Dto
 {
     public class VehicleDto
     {
-        public string Plate { set; get; }
-        public string Type { set; get; }
-        public int Displacement { set; get; }
-        public DateTimeOffset DateOfEntry { set; get; }
+        public string Plate { get; private set; }
+        public string Type { get; private set; }
+        public int Displacement { get; private set; }
+        public DateTimeOffset DateOfEntry { get; private set; }
 
         public VehicleDto()
         {
