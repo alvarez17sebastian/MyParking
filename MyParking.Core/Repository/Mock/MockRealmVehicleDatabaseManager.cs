@@ -16,13 +16,13 @@ namespace MyParking.core.Repository.Mock
 
         public List<VehicleDto> GetAllVehicles()
         {
-            return VehicleMapping.ListVehicleToListVehicleDto(vehicles);
+            return GetVehiclesDto(vehicles);
         }
 
         public List<VehicleDto> GetVehicles(string plate)
         {
             vehicles = vehicles.Where(currentVehicle => currentVehicle.Plate.Contains(plate)).ToList();
-            return VehicleMapping.ListVehicleToListVehicleDto(vehicles);
+            return GetVehiclesDto(vehicles);
         }
 
         public VehicleDto GetVehicle(string plate)
@@ -33,12 +33,12 @@ namespace MyParking.core.Repository.Mock
         public List<VehicleDto> GetVehiclesForType(string typeVehicle)
         {
             vehicles = vehicles.Where(currentVehicle => currentVehicle.Type.Equals(typeVehicle)).ToList();
-            return VehicleMapping.ListVehicleToListVehicleDto(vehicles);
+            return GetVehiclesDto(vehicles);
         }
 
         public bool SaveVehicle(VehicleDto vehicleDto)
         {
-            Vehicle vehicle = VehicleMapping.VehicleDtoToVehicle(vehicleDto);
+            Vehicle vehicle = GetVehicleEntity(vehicleDto);
             vehicles.Add(vehicle);
             return true;
         }
@@ -50,9 +50,36 @@ namespace MyParking.core.Repository.Mock
 
         public bool DeleteVehicle(VehicleDto vehicleDto)
         {
-            Vehicle vehicle = VehicleMapping.VehicleDtoToVehicle(vehicleDto);
+            Vehicle vehicle = GetVehicleEntity(vehicleDto);
             vehicles.Remove(vehicle);
             return true;
+        }
+
+        #endregion
+
+        #region Mapping methods
+
+        private Vehicle GetVehicleEntity(VehicleDto vehicleDto)
+        {
+            Vehicle vehicle = new Vehicle(vehicleDto.Plate, vehicleDto.Type, vehicleDto.Displacement, vehicleDto.DateOfEntry);
+            return vehicle;
+        }
+
+        private VehicleDto GetVehicleDto(Vehicle vehicle)
+        {
+            VehicleDto vehicleDto = new VehicleDto(vehicle.Plate, vehicle.Type, vehicle.Displacement, vehicle.DateOfEntry);
+            return vehicleDto;
+        }
+
+        private List<VehicleDto> GetVehiclesDto(List<Vehicle> vehicles)
+        {
+            List<VehicleDto> vehiclesDto = new List<VehicleDto>();
+            foreach (var vehicleEntity in vehicles)
+            {
+                VehicleDto vehicleDto = GetVehicleDto(vehicleEntity);
+                vehiclesDto.Add(vehicleDto);
+            }
+            return vehiclesDto;
         }
 
         #endregion

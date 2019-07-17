@@ -5,6 +5,7 @@ using MyParking.Core.Constants;
 using MyParking.Core.CustomExceptions;
 using MyParking.Core.DependencyInjection;
 using MyParking.Core.Helpers;
+using MyParking.Core.Mapping;
 using MyParking.Core.Repository;
 
 namespace MyParking.Core.DomainModels
