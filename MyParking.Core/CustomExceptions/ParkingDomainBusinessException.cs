@@ -6,9 +6,8 @@ namespace MyParking.Core.CustomExceptions
     public class ParkingDomainBusinessException:Exception
     {
 
-        public ParkingDomainBusinessException() : base()
+        public ParkingDomainBusinessException()
         {
-
         }
 
         public ParkingDomainBusinessException(string errorMessage, Exception exception)
@@ -21,7 +20,6 @@ namespace MyParking.Core.CustomExceptions
                                               StreamingContext streamingContext) :
                                               base(serializationInfo, streamingContext)
         {
-
         }
 
         public ParkingDomainBusinessException(string errorMessage):base(errorMessage)

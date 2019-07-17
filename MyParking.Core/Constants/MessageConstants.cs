@@ -1,5 +1,4 @@
-﻿using System;
-namespace MyParking.Core.Constants
+﻿namespace MyParking.Core.Constants
 {
     public static class MessageConstants
     {

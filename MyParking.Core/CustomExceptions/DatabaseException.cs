@@ -5,7 +5,7 @@ namespace MyParking.Core.CustomExceptions
 {
     public class DatabaseException:Exception
     {
-        public DatabaseException():base()
+        public DatabaseException()
         {
 
         }

@@ -5,7 +5,6 @@ using MyParking.Core.Constants;
 using MyParking.Core.CustomExceptions;
 using MyParking.Core.DependencyInjection;
 using MyParking.Core.Helpers;
-using MyParking.Core.Mapping;
 using MyParking.Core.Repository;
 
 namespace MyParking.Core.DomainModels
@@ -21,6 +20,8 @@ namespace MyParking.Core.DomainModels
 
         public bool RegisterCheckInVehicle(VehicleDto vehicleDto)
         {
+            if (vehicleDto == null)
+                throw new ArgumentNullException();
             CheckAvailableCell(vehicleDto.Type);
             CheckIfCanTheVehicleEnterForLicensePlate(vehicleDto.Plate, vehicleDto.DateOfEntry);
             return vehicleDatabaseRepository.SaveVehicle(vehicleDto);
@@ -51,15 +52,10 @@ namespace MyParking.Core.DomainModels
 
         private bool CheckIfCanTheVehicleEnterForLicensePlate(string licensePlate, DateTimeOffset dateOfEntry)
         {
-            if (VerifyStartWordLicensePlate(licensePlate))
-            {
-                if (CurrentDateManagement.GetCurrentDay(dateOfEntry) != DateConstants.SundayDay && CurrentDateManagement.GetCurrentDay(dateOfEntry) != DateConstants.MondayDay)
-                {
-                    throw new ParkingDomainBusinessException(MessageConstants.NotAuthorized);
-                }
-            }
-
-            return true;
+            if (VerifyStartWordLicensePlate(licensePlate) && CurrentDateManagement.GetCurrentDay(dateOfEntry) != (int)DateConstants.SundayDay && CurrentDateManagement.GetCurrentDay(dateOfEntry) != (int)DateConstants.MondayDay)
+                throw new ParkingDomainBusinessException(MessageConstants.NotAuthorized);
+            else
+                return true;
         }
 
         private bool VerifyStartWordLicensePlate(string licensePlate)
@@ -110,6 +106,11 @@ namespace MyParking.Core.DomainModels
                 {
                     payment += ParkingConstants.AditionalCost;
                 }
+            }
+            else
+            {
+                throw new ParkingDomainBusinessException(MessageConstants.TypeVehicleNoExist);
+       
             }
             return payment;
         }
