@@ -21,10 +21,15 @@ namespace MyParking.Core.DomainModels
         public bool RegisterCheckInVehicle(VehicleDto vehicleDto)
         {
             if (vehicleDto == null)
+            {
                 throw new ArgumentNullException();
-            CheckAvailableCell(vehicleDto.Type);
-            CheckIfCanTheVehicleEnterForLicensePlate(vehicleDto.Plate, vehicleDto.DateOfEntry);
-            return vehicleDatabaseRepository.SaveVehicle(vehicleDto);
+            }
+            else
+            {
+                CheckAvailableCell(vehicleDto.Type);
+                CheckIfCanTheVehicleEnterForLicensePlate(vehicleDto.Plate, vehicleDto.DateOfEntry);
+                return vehicleDatabaseRepository.SaveVehicle(vehicleDto);
+            }
         }
 
         public bool RegisterCheckoutVehicle(VehicleDto vehicleDto)
@@ -53,9 +58,13 @@ namespace MyParking.Core.DomainModels
         private bool CheckIfCanTheVehicleEnterForLicensePlate(string licensePlate, DateTimeOffset dateOfEntry)
         {
             if (VerifyStartWordLicensePlate(licensePlate) && CurrentDateManagement.GetCurrentDay(dateOfEntry) != (int)DateConstants.SundayDay && CurrentDateManagement.GetCurrentDay(dateOfEntry) != (int)DateConstants.MondayDay)
+            {
                 throw new ParkingDomainBusinessException(MessageConstants.NotAuthorized);
+            }
             else
+            {
                 return true;
+            }
         }
 
         private bool VerifyStartWordLicensePlate(string licensePlate)
