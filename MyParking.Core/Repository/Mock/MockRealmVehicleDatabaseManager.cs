@@ -25,11 +25,6 @@ namespace MyParking.core.Repository.Mock
             return GetVehiclesDto(vehicles);
         }
 
-        public VehicleDto GetVehicle(string plate)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<VehicleDto> GetVehiclesForType(string typeVehicle)
         {
             vehicles = vehicles.Where(currentVehicle => currentVehicle.Type.Equals(typeVehicle)).ToList();

@@ -4,7 +4,7 @@ using Ninject;
 
 namespace MyParking.Core.DependencyInjection
 {
-    public class ServiceLocator
+    public static class ServiceLocator
     {
         private static IKernel kernel;
 
@@ -12,7 +12,7 @@ namespace MyParking.Core.DependencyInjection
         {
             if(kernel == null)
             {
-                var settings = new NinjectSettings(){ LoadExtensions = false};
+                var settings = new NinjectSettings{ LoadExtensions = false};
                 kernel = new StandardKernel(settings);
                 kernel.Load(Assembly.GetExecutingAssembly());
             }

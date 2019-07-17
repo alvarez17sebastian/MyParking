@@ -3,7 +3,7 @@ using AutoMapper;
 
 namespace MyParking.Core.Mapping
 {
-    public class MapperService
+    public static class MapperService
     {
         public static void InitAutomapper()
         {

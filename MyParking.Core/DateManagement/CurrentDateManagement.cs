@@ -1,7 +1,7 @@
 ﻿using System;
 namespace MyParking.Core.Helpers
 {
-    public class CurrentDateManagement
+    public static class CurrentDateManagement
     {
         public static int GetCurrentDay(DateTimeOffset dateOfentry)
         {
