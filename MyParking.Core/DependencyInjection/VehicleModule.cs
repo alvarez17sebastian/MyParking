@@ -13,7 +13,7 @@ namespace MyParking.Core.DependencyInjection
             this.Bind<IVehicleDatabaseRepository>().To<MockRealmVehicleDatabaseManager>().InSingletonScope();
 
 #elif RELEASE
-            this.Bind<IVehicleDatabaseRepository>().To<RealmVehicleDatabaseManager>().InSingletonScope();
+            this.Bind<IVehicleDatabaseRepository>().To<MockRealmVehicleDatabaseManager>().InSingletonScope();
 #endif
         }
     }
