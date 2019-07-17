@@ -17,7 +17,7 @@ namespace MyParking.Core.Test
             ServiceLocator.SetupKernel();
         }
 
-        private IVehicleDatabaseRepository repository = new MockRealmVehicleDatabaseManager();
+        private readonly IVehicleDatabaseRepository repository = new MockRealmVehicleDatabaseManager();
 
         [Fact]
         public void RegisterVehicle_WithLicensePlateNotStartWithChar_A_RegisterSucecessful_Test()
