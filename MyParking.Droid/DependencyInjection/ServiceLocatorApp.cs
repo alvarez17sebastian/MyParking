@@ -4,7 +4,7 @@ using Ninject;
 
 namespace MyParking.Droid.DependencyInjection
 {
-    public class ServiceLocatorApp
+    public static class ServiceLocatorApp
     {
         private static IKernel kernel;
 

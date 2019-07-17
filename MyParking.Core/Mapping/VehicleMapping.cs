@@ -4,7 +4,7 @@ using MyParking.core.Dto;
 
 namespace MyParking.Core.Mapping
 {
-    public class VehicleMapping
+    public static class VehicleMapping
     {
         public static Vehicle VehicleDtoToVehicle(VehicleDto vehicleDto)
         {

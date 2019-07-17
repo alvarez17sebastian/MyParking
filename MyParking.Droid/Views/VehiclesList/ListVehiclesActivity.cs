@@ -110,7 +110,7 @@ namespace Parking.Droid
                     DeleteVehicle(vehicleDto);
                     break;
                 default:
-                    Toast.MakeText(this, "Acción no registrada", ToastLength.Short).Show();
+                    Toast.MakeText(this, MessageConstants.UnRegisteredAction, ToastLength.Short).Show();
                     break;
             }
         }
@@ -124,12 +124,12 @@ namespace Parking.Droid
         {
             if (parking.DeleteVehicle(vehicleDtoParam))
             {
-                Toast.MakeText(this, "Vehiculo eliminado", ToastLength.Short).Show();
+                Toast.MakeText(this, MessageConstants.DeletedVehicle, ToastLength.Short).Show();
                 vehiclesAdapter.Delete(vehicleDtoParam);
             }
             else
             {
-                Toast.MakeText(this, "Error al eliminar vehiculo", ToastLength.Short).Show();
+                Toast.MakeText(this, MessageConstants.ErrorDeleteVehicle, ToastLength.Short).Show();
             }
         }
 
