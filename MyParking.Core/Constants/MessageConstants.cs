@@ -6,5 +6,10 @@
         public static readonly string NotAuthorized = "No esta autorizado para ingresar.";
         public static readonly string RequiredField = "Campo obligatorio.";
         public static readonly string NotAvailableEdit = "Acción de editar no disponible temporalmente";
+        public static readonly string DeletedVehicle = "Vehiculo eliminado";
+        public static readonly string ErrorDeleteVehicle = "Error al eliminar vehiculo";
+        public static readonly string UnRegisteredAction = "Acción no registrada";
+
+
     }
 }

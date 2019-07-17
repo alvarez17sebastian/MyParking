@@ -3,7 +3,6 @@ using System;
 using Android.App;
 using Android.OS;
 using Android.Support.Design.Widget;
-using Android.Views;
 using Android.Widget;
 using MyParking.core.Dto;
 using MyParking.Core.Constants;
@@ -11,12 +10,10 @@ using MyParking.Core.CustomExceptions;
 using MyParking.Core.DependencyInjection;
 using MyParking.Core.DomainModels;
 using MyParking.Droid;
-using static Android.Views.View;
-
 namespace Parking.Droid
 {
     [Activity(Label = "Registro de vehículo",Theme = "@style/AppTheme")]
-    public class VehicleRegisterActivity : Activity,IOnClickListener
+    public class VehicleRegisterActivity : Activity
     {
         #region Statement of user interface
         private Button buttonRegisterVehicle;
@@ -59,6 +56,7 @@ namespace Parking.Droid
         #endregion
 
         #region Activity behaviors
+
         private void RegisterVehicle()
         {
             try
@@ -87,7 +85,8 @@ namespace Parking.Droid
             {
                 textInputEditTextLicensePlate.Error = MessageConstants.RequiredField;
                 return false;
-            }else if (string.IsNullOrEmpty(textInputEditTextDisplacement.Text))
+            }
+            else if (string.IsNullOrEmpty(textInputEditTextDisplacement.Text))
             {
                 textInputEditTextDisplacement.Error = MessageConstants.RequiredField;
                 return false;
@@ -118,23 +117,18 @@ namespace Parking.Droid
 
         private void SetEventsListener()
         {
-            buttonRegisterVehicle.SetOnClickListener(this);
+            buttonRegisterVehicle.Click += ButtonRegisterVehicle_Click;
         }
 
-
-        public void OnClick(View v)
+        void ButtonRegisterVehicle_Click(object sender, EventArgs e)
         {
-            switch (v.Id)
+            if (ValidateFields())
             {
-                case Resource.Id.button_RegisterVehicle_activityRegisterVehicle:
-                    if (ValidateFields())
-                    {
-                        RegisterVehicle();
-                        Finish();
-                    }
-                    break;
+                RegisterVehicle();
+                Finish();
             }
         }
+
         #endregion
     }
 }

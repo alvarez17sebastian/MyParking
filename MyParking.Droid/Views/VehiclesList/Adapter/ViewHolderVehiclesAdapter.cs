@@ -8,7 +8,7 @@ namespace Parking.Droid.ListVehicles
     public class ViewHolderVehiclesAdapter : RecyclerView.ViewHolder
     {
 
-        private VehiclesAdapter vehiclesAdapter;
+        private readonly VehiclesAdapter vehiclesAdapter;
         public TextView tvLicensePlate;
         public TextView tvType;
         public TextView tvDisplacement;
@@ -38,15 +38,15 @@ namespace Parking.Droid.ListVehicles
         private void SetListeners()
         {
             imageViewCheckOut.Click += (sender, e) => vehiclesAdapter.
-                                                      ClickItemAdapter(ActionCodes.actionRegisterCheckout,
+                                                      ClickItemAdapter((int)ActionCodes.actionRegisterCheckout,
                                                       vehiclesAdapter.Vehicles[LayoutPosition]);
 
             imageViewEditVehicle.Click += (sender, e) => vehiclesAdapter.
-                                                         ClickItemAdapter(ActionCodes.actionEditVehicle,
+                                                         ClickItemAdapter((int)ActionCodes.actionEditVehicle,
                                                          vehiclesAdapter.Vehicles[LayoutPosition]);
 
             imageViewDeleteVehicle.Click += (sender, e) => vehiclesAdapter.
-                                                           ClickItemAdapter(ActionCodes.actionDeleteVehicle,
+                                                           ClickItemAdapter((int)ActionCodes.actionDeleteVehicle,
                                                            vehiclesAdapter.Vehicles[LayoutPosition]);
         }
     }

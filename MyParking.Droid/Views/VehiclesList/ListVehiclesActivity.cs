@@ -97,17 +97,20 @@ namespace Parking.Droid
         {
             switch (action)
             {
-                case ActionCodes.actionRegisterCheckout:
+                case (int)ActionCodes.actionRegisterCheckout:
                     int payment = parking.CalculatePaymentVehicle(vehicleDto);
                     this.vehicleDto = vehicleDto;
                     CustomDialog customDialog = new CustomDialog();
                     customDialog.ShowCustomDialogInformationPayment(this, payment.ToString(), ConfirmCheckout,null);
                     break;
-                case ActionCodes.actionEditVehicle:
+                case (int)ActionCodes.actionEditVehicle:
                     Toast.MakeText(this, MessageConstants.NotAvailableEdit, ToastLength.Short).Show();
                     break;
-                case ActionCodes.actionDeleteVehicle:
+                case (int)ActionCodes.actionDeleteVehicle:
                     DeleteVehicle(vehicleDto);
+                    break;
+                default:
+                    Toast.MakeText(this, "Acción no registrada", ToastLength.Short).Show();
                     break;
             }
         }
@@ -125,7 +128,9 @@ namespace Parking.Droid
                 vehiclesAdapter.Delete(vehicleDtoParam);
             }
             else
+            {
                 Toast.MakeText(this, "Error al eliminar vehiculo", ToastLength.Short).Show();
+            }
         }
 
         private void ChangeActivity()
