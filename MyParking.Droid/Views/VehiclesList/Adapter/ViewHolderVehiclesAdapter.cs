@@ -38,15 +38,15 @@ namespace Parking.Droid.ListVehicles
         private void SetListeners()
         {
             imageViewCheckOut.Click += (sender, e) => vehiclesAdapter.
-                                                      ClickItemAdapter(ActionsCode.ACTION_REGISTER_CHECKOUT,
+                                                      ClickItemAdapter(ActionCodes.actionRegisterCheckout,
                                                       vehiclesAdapter.Vehicles[LayoutPosition]);
 
             imageViewEditVehicle.Click += (sender, e) => vehiclesAdapter.
-                                                         ClickItemAdapter(ActionsCode.ACTION_EDIT_VEHICLE,
+                                                         ClickItemAdapter(ActionCodes.actionEditVehicle,
                                                          vehiclesAdapter.Vehicles[LayoutPosition]);
 
             imageViewDeleteVehicle.Click += (sender, e) => vehiclesAdapter.
-                                                           ClickItemAdapter(ActionsCode.ACTION_DELETE_VEHICLE,
+                                                           ClickItemAdapter(ActionCodes.actionDeleteVehicle,
                                                            vehiclesAdapter.Vehicles[LayoutPosition]);
         }
     }

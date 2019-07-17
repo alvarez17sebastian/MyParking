@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <ProjectGuid>{9b597bc2-c810-44c6-80e6-ea53f6efb69e}</ProjectGuid>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,5 +12,8 @@
   <ItemGroup>
     <Folder Include="DependencyInjection\" />
     <Folder Include="Mapping\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Repository\Local\RealmVehicleDatabaseManager.cs" />
   </ItemGroup>
 </Project>

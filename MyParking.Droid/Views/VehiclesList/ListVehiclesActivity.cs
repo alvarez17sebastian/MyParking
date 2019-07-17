@@ -97,16 +97,16 @@ namespace Parking.Droid
         {
             switch (action)
             {
-                case ActionsCode.ACTION_REGISTER_CHECKOUT:
+                case ActionCodes.actionRegisterCheckout:
                     int payment = parking.CalculatePaymentVehicle(vehicleDto);
                     this.vehicleDto = vehicleDto;
                     CustomDialog customDialog = new CustomDialog();
                     customDialog.ShowCustomDialogInformationPayment(this, payment.ToString(), ConfirmCheckout,null);
                     break;
-                case ActionsCode.ACTION_EDIT_VEHICLE:
+                case ActionCodes.actionEditVehicle:
                     Toast.MakeText(this, MessageConstants.NotAvailableEdit, ToastLength.Short).Show();
                     break;
-                case ActionsCode.ACTION_DELETE_VEHICLE:
+                case ActionCodes.actionDeleteVehicle:
                     DeleteVehicle(vehicleDto);
                     break;
             }

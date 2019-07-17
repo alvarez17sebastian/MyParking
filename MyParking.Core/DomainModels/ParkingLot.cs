@@ -63,7 +63,7 @@ namespace MyParking.Core.DomainModels
 
         private bool VerifyStartWordLicensePlate(string licensePlate)
         {
-            bool resultOfVerifyLicensePlate = licensePlate.StartsWith(ParkingConstants.StartWord);
+            bool resultOfVerifyLicensePlate = licensePlate.StartsWith(ParkingConstants.StartWord, StringComparison.Ordinal);
             return resultOfVerifyLicensePlate;
         }
 
@@ -136,19 +136,7 @@ namespace MyParking.Core.DomainModels
 
         private bool CheckDisplacementMotorCycle(int displacement)
         {
-            if (displacement > ParkingConstants.DisplacmentMotorbike)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public VehicleDto GetVehicle(string plate)
-        {
-            return null;
+            return displacement > ParkingConstants.DisplacmentMotorbike;
         }
     }
 }

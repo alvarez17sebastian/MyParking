@@ -60,7 +60,7 @@
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Codes\ActionsCode.cs" />
+    <Compile Include="Codes\ActionCodes.cs" />
     <Compile Include="DependencyInjection\ServiceLocatorApp.cs" />
     <Compile Include="DependencyInjection\VehicleModuleApp.cs" />
     <Compile Include="MyParkingApplication.cs" />
@@ -127,7 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyParking.Core\MyParking.Core.csproj">
-      <Project>{94442378-BC25-4680-A9A0-D1C4B1A21A3D}</Project>
+      <Project>{9B597BC2-C810-44C6-80E6-EA53F6EFB69E}</Project>
       <Name>MyParking.Core</Name>
     </ProjectReference>
   </ItemGroup>

@@ -1,5 +1,6 @@
 ﻿using MyParking.core.Repository.Mock;
 using MyParking.Core.Repository;
+using MyParking.Core.Repository.Local;
 using Ninject.Modules;
 
 namespace MyParking.Core.DependencyInjection
