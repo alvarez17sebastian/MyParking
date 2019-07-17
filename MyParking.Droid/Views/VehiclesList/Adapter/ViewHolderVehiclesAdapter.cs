@@ -9,13 +9,13 @@ namespace Parking.Droid.ListVehicles
     {
 
         private readonly VehiclesAdapter vehiclesAdapter;
-        public TextView tvLicensePlate;
-        public TextView tvType;
-        public TextView tvDisplacement;
-        public TextView tvDateOfEntry;
-        public ImageView imageViewEditVehicle;
-        public ImageView imageViewCheckOut;
-        public ImageView imageViewDeleteVehicle;
+        private TextView tvLicensePlate;
+        private TextView tvType;
+        private TextView tvDisplacement;
+        private TextView tvDateOfEntry;
+        private ImageView imageViewEditVehicle;
+        private ImageView imageViewCheckOut;
+        private ImageView imageViewDeleteVehicle;
 
         public ViewHolderVehiclesAdapter(View itemView,VehiclesAdapter vehiclesAdapter) : base(itemView)
         {
@@ -33,6 +33,41 @@ namespace Parking.Droid.ListVehicles
             imageViewCheckOut = itemView.FindViewById<ImageView>(Resource.Id.imageView_registerCheckOut_vehiclesAdapter);
             imageViewDeleteVehicle = itemView.FindViewById<ImageView>(Resource.Id.imageView_deleteVehicle_vehiclesAdapter);
 
+        }
+
+        public TextView GettvLicensePlate()
+        {
+            return this.tvLicensePlate;
+        }
+
+        public TextView GettvType()
+        {
+            return this.tvType;
+        }
+
+        public TextView GettvDisplacement()
+        {
+            return this.tvDisplacement;
+        }
+
+        public TextView GettvDateOfEntry()
+        {
+            return this.tvDateOfEntry;
+        }
+
+        public ImageView GetimageViewEditVehicle()
+        {
+            return this.imageViewEditVehicle;
+        }
+
+        public ImageView GetimageViewCheckOut()
+        {
+            return this.imageViewCheckOut;
+        }
+
+        public ImageView GetimageViewDeleteVehicle()
+        {
+            return this.imageViewDeleteVehicle;
         }
 
         private void SetListeners()

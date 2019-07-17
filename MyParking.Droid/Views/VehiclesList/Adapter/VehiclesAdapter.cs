@@ -32,10 +32,10 @@ namespace Parking.Droid.ListVehicles
             ViewHolderVehiclesAdapter viewHolder = holder as ViewHolderVehiclesAdapter;
             VehicleDto vehicleDto = Vehicles[position];
 
-            viewHolder.tvLicensePlate.Text = vehicleDto.Plate;
-            viewHolder.tvType.Text = vehicleDto.Type;
-            viewHolder.tvDisplacement.Text = vehicleDto.Displacement.ToString();
-            viewHolder.tvDateOfEntry.Text = vehicleDto.DateOfEntry.ToString();
+            viewHolder.GettvLicensePlate().Text = vehicleDto.Plate;
+            viewHolder.GettvType().Text = vehicleDto.Type;
+            viewHolder.GettvDisplacement().Text = vehicleDto.Displacement.ToString();
+            viewHolder.GettvDateOfEntry().Text = vehicleDto.DateOfEntry.ToString();
 
         }
 
