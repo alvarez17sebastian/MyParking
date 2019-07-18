@@ -10,20 +10,34 @@ namespace Parking.Droid.ListVehicles
 {
     public class VehiclesAdapter : RecyclerView.Adapter
     {
+        #region Statement of list
+
         public List<VehicleDto> Vehicles { get; internal set; }
 
+        #endregion
+
+        #region Actions
+
         public Action<int,VehicleDto> ClickItemAdapter { get; set; }
+
+        #endregion
+
+        #region Constructors
 
         public VehiclesAdapter()
         {
             Vehicles = new List<VehicleDto>();
         }
 
-        public VehiclesAdapter(Action<int,VehicleDto> clickItemAdapter)
+        public VehiclesAdapter(Action<int, VehicleDto> clickItemAdapter)
         {
             Vehicles = new List<VehicleDto>();
             this.ClickItemAdapter = clickItemAdapter;
         }
+
+        #endregion
+
+        #region Override adapter methods
 
         public override int ItemCount => Vehicles.Count;
 
@@ -36,7 +50,6 @@ namespace Parking.Droid.ListVehicles
             viewHolder.GettvType().Text = vehicleDto.Type;
             viewHolder.GettvDisplacement().Text = vehicleDto.Displacement.ToString();
             viewHolder.GettvDateOfEntry().Text = vehicleDto.DateOfEntry.ToString();
-
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
@@ -45,6 +58,10 @@ namespace Parking.Droid.ListVehicles
             ViewHolderVehiclesAdapter viewHolder = new ViewHolderVehiclesAdapter(view, this);
             return viewHolder;
         }
+
+        #endregion
+
+        #region Add and Delete methods on list
 
         public void Add(VehicleDto vehicle)
         {
@@ -61,5 +78,7 @@ namespace Parking.Droid.ListVehicles
             Vehicles.Remove(vehicle);
             NotifyDataSetChanged();
         }
+
+        #endregion
     }
 }

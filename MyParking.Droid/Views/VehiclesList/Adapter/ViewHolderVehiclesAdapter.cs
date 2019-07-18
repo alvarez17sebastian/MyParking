@@ -7,6 +7,7 @@ namespace Parking.Droid.ListVehicles
 {
     public class ViewHolderVehiclesAdapter : RecyclerView.ViewHolder
     {
+        #region Statement UI
 
         private readonly VehiclesAdapter vehiclesAdapter;
         private TextView tvLicensePlate;
@@ -17,12 +18,21 @@ namespace Parking.Droid.ListVehicles
         private ImageView imageViewCheckOut;
         private ImageView imageViewDeleteVehicle;
 
+        #endregion
+
+        #region Constructors
+
         public ViewHolderVehiclesAdapter(View itemView,VehiclesAdapter vehiclesAdapter) : base(itemView)
         {
             this.vehiclesAdapter = vehiclesAdapter;
             InitUserInterface(itemView);
             SetListeners();
         }
+
+        #endregion
+
+        #region Initialization UI
+
         private void InitUserInterface(View itemView)
         {
             tvLicensePlate = itemView.FindViewById<TextView>(Resource.Id.textView_plate_vehiclesAdapter);
@@ -34,6 +44,10 @@ namespace Parking.Droid.ListVehicles
             imageViewDeleteVehicle = itemView.FindViewById<ImageView>(Resource.Id.imageView_deleteVehicle_vehiclesAdapter);
 
         }
+
+        #endregion
+
+        #region Getters of the UI
 
         public TextView GettvLicensePlate()
         {
@@ -70,6 +84,10 @@ namespace Parking.Droid.ListVehicles
             return this.imageViewDeleteVehicle;
         }
 
+        #endregion
+
+        #region Click events
+
         private void SetListeners()
         {
             imageViewCheckOut.Click += (sender, e) => vehiclesAdapter.
@@ -84,5 +102,7 @@ namespace Parking.Droid.ListVehicles
                                                            ClickItemAdapter((int)ActionCodes.actionDeleteVehicle,
                                                            vehiclesAdapter.Vehicles[LayoutPosition]);
         }
+
+        #endregion
     }
 }

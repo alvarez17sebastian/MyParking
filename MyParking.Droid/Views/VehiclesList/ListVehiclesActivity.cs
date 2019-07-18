@@ -13,6 +13,7 @@ using MyParking.Droid.DependencyInjection;
 using MyParking.Core.DomainModels;
 using MyParking.core.Dto;
 using MyParking.Core.Constants;
+using MyParking.Droid.Views.VehiclesList.PatternCommand;
 
 namespace Parking.Droid
 {
@@ -30,8 +31,6 @@ namespace Parking.Droid
         #region Statement of business logic class
 
         private ParkingLot parking;
-        private VehicleDto vehicleDto = null;
-
         #endregion
 
         #region Lifecycle
@@ -73,12 +72,7 @@ namespace Parking.Droid
 
         #endregion
 
-        #region Activity behaviors
-
-        private void FabRegisterVehicle_Click(object sender, System.EventArgs e)
-        {
-            ChangeActivity();
-        }
+        #region Adapter and recyclerview implementation
 
         private void SetupRecyclerView()
         {
@@ -87,51 +81,38 @@ namespace Parking.Droid
             rvVehicles.SetAdapter(vehiclesAdapter);
         }
 
+        #endregion
+
+        #region Adapter Actions
+
+        public void AdapterActions(int action, VehicleDto vehicleDto)
+        {
+            Invoker invoker = new Invoker(this,parking,vehicleDto,vehiclesAdapter);
+            invoker.Execute(action);
+        }
+
+        #endregion
+
+        #region Button events
+
+        private void FabRegisterVehicle_Click(object sender, System.EventArgs e)
+        {
+            ChangeActivity();
+        }
+
+        #endregion
+
+        #region Actions on the UI
+
         private void LoadVehicles()
         {
             var listVehicles = parking.GetAllVehicles();
             vehiclesAdapter.AddList(listVehicles);
         }
 
-        public void AdapterActions(int action, VehicleDto vehicleDto)
-        {
-            switch (action)
-            {
-                case (int)ActionCodes.actionRegisterCheckout:
-                    int payment = parking.CalculatePaymentVehicle(vehicleDto);
-                    this.vehicleDto = vehicleDto;
-                    CustomDialog customDialog = new CustomDialog();
-                    customDialog.ShowCustomDialogInformationPayment(this, payment.ToString(), ConfirmCheckout,null);
-                    break;
-                case (int)ActionCodes.actionEditVehicle:
-                    Toast.MakeText(this, MessageConstants.NotAvailableEdit, ToastLength.Short).Show();
-                    break;
-                case (int)ActionCodes.actionDeleteVehicle:
-                    DeleteVehicle(vehicleDto);
-                    break;
-                default:
-                    Toast.MakeText(this, MessageConstants.UnRegisteredAction, ToastLength.Short).Show();
-                    break;
-            }
-        }
+        #endregion
 
-        private void ConfirmCheckout()
-        {
-            DeleteVehicle(this.vehicleDto);
-        }
-
-        private void DeleteVehicle(VehicleDto vehicleDtoParam)
-        {
-            if (parking.DeleteVehicle(vehicleDtoParam))
-            {
-                Toast.MakeText(this, MessageConstants.DeletedVehicle, ToastLength.Short).Show();
-                vehiclesAdapter.Delete(vehicleDtoParam);
-            }
-            else
-            {
-                Toast.MakeText(this, MessageConstants.ErrorDeleteVehicle, ToastLength.Short).Show();
-            }
-        }
+        #region Change of activities
 
         private void ChangeActivity()
         {
@@ -140,5 +121,6 @@ namespace Parking.Droid
         }
 
         #endregion
+
     }
 }

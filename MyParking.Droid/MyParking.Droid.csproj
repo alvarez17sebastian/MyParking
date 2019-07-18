@@ -64,12 +64,17 @@
     <Compile Include="DependencyInjection\ServiceLocatorApp.cs" />
     <Compile Include="DependencyInjection\VehicleModuleApp.cs" />
     <Compile Include="MyParkingApplication.cs" />
-    <Compile Include="Dialogs\CustomDialog.cs" />
+    <Compile Include="Dialogs\VisualizerPaymentDialog.cs" />
     <Compile Include="Splash\MainActivity.cs" />
     <Compile Include="Views\VehicleRegister\VehicleRegisterActivity.cs" />
     <Compile Include="Views\VehiclesList\Adapter\VehiclesAdapter.cs" />
     <Compile Include="Views\VehiclesList\Adapter\ViewHolderVehiclesAdapter.cs" />
     <Compile Include="Views\VehiclesList\ListVehiclesActivity.cs" />
+    <Compile Include="Views\VehiclesList\AdapterActions\Command.cs" />
+    <Compile Include="Views\VehiclesList\AdapterActions\RegisterCheckoutAction.cs" />
+    <Compile Include="Views\VehiclesList\AdapterActions\EditAction.cs" />
+    <Compile Include="Views\VehiclesList\AdapterActions\DeleteAction.cs" />
+    <Compile Include="Views\VehiclesList\AdapterActions\Invoker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -127,7 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyParking.Core\MyParking.Core.csproj">
-      <Project>{9B597BC2-C810-44C6-80E6-EA53F6EFB69E}</Project>
+      <Project>{C810B3A2-F56B-4B1B-84B4-C8D7C73E6013}</Project>
       <Name>MyParking.Core</Name>
     </ProjectReference>
   </ItemGroup>
@@ -140,6 +145,7 @@
     <Folder Include="Views\" />
     <Folder Include="Views\VehicleRegister\" />
     <Folder Include="Views\VehiclesList\" />
+    <Folder Include="Views\VehiclesList\AdapterActions\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

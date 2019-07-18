@@ -12,7 +12,7 @@ using MyParking.Core.DomainModels;
 using MyParking.Droid;
 namespace Parking.Droid
 {
-    [Activity(Label = "Registro de vehículo",Theme = "@style/AppTheme")]
+    [Activity(Label = "Registro de vehículo", Theme = "@style/AppTheme")]
     public class VehicleRegisterActivity : Activity
     {
         #region Statement of user interface
@@ -55,29 +55,25 @@ namespace Parking.Droid
         }
         #endregion
 
-        #region Activity behaviors
+        #region Button events
 
-        private void RegisterVehicle()
+        private void SetEventsListener()
         {
-            try
+            buttonRegisterVehicle.Click += ButtonRegisterVehicle_Click;
+        }
+
+        void ButtonRegisterVehicle_Click(object sender, EventArgs e)
+        {
+            if (ValidateFields())
             {
-                VehicleDto vehicleDto = CreateVehicle();
-                parking.RegisterCheckInVehicle(vehicleDto);
-            }
-            catch (ParkingDomainBusinessException businessException)
-            {
-                Toast.MakeText(this,businessException.Message,ToastLength.Short).Show();
+                RegisterVehicle();
+                Finish();
             }
         }
 
-        private VehicleDto CreateVehicle()
-        {
-            string plate = textInputEditTextLicensePlate.Text;
-            string vehicleType = GetVehicleTypeKey();
-            string strDisplacement = textInputEditTextDisplacement.Text;
-            int displacement = !InputIsNullOrEmpty(strDisplacement)? int.Parse(strDisplacement):0;
-            return new VehicleDto(plate, vehicleType, displacement, DateTime.Now);
-        }
+        #endregion
+
+        #region Validations on UI
 
         private bool ValidateFields()
         {
@@ -97,6 +93,37 @@ namespace Parking.Droid
             }
         }
 
+        private bool InputIsNullOrEmpty(string strInput)
+        {
+            return string.IsNullOrEmpty(strInput);
+        }
+
+        #endregion
+
+        #region Actions on UI
+
+        private void RegisterVehicle()
+        {
+            try
+            {
+                VehicleDto vehicleDto = CreateVehicle();
+                parking.RegisterCheckInVehicle(vehicleDto);
+            }
+            catch (ParkingDomainBusinessException businessException)
+            {
+                Toast.MakeText(this, businessException.Message, ToastLength.Short).Show();
+            }
+        }
+
+        private VehicleDto CreateVehicle()
+        {
+            string plate = textInputEditTextLicensePlate.Text;
+            string vehicleType = GetVehicleTypeKey();
+            string strDisplacement = textInputEditTextDisplacement.Text;
+            int displacement = !InputIsNullOrEmpty(strDisplacement) ? int.Parse(strDisplacement) : 0;
+            return new VehicleDto(plate, vehicleType, displacement, DateTime.Now);
+        }
+
         private string GetVehicleTypeKey()
         {
             string valueSpinnerVehicleType = spinnerVehicleTypes.SelectedItem.ToString();
@@ -107,25 +134,6 @@ namespace Parking.Droid
             else
             {
                 return ParkingConstants.MotorBikeType;
-            }
-        }
-
-        private bool InputIsNullOrEmpty(string strInput)
-        {
-            return string.IsNullOrEmpty(strInput);
-        }
-
-        private void SetEventsListener()
-        {
-            buttonRegisterVehicle.Click += ButtonRegisterVehicle_Click;
-        }
-
-        void ButtonRegisterVehicle_Click(object sender, EventArgs e)
-        {
-            if (ValidateFields())
-            {
-                RegisterVehicle();
-                Finish();
             }
         }
 

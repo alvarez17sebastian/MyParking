@@ -5,7 +5,7 @@ using Android.Widget;
 
 namespace MyParking.Droid
 {
-    public class CustomDialog
+    public class VisualizerPaymentDialog
     {
 
         public void ShowCustomDialogInformationPayment(Activity activity,

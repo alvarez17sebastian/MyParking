@@ -7,11 +7,11 @@ using MyParking.Core.Mapping;
 
 namespace MyParking.Core.Repository.Local
 {
-    public class VehicleDatabaseRepositoryImplementation:IVehicleDatabaseRepository
+    public class RealmVehicleDatabaseRepositoryImplementation:IVehicleDatabaseRepository
     {
         private readonly RealmDatabaseManager realmDatabaseManager;
 
-        public VehicleDatabaseRepositoryImplementation()
+        public RealmVehicleDatabaseRepositoryImplementation()
         {
             realmDatabaseManager = new RealmDatabaseManager();
         }
