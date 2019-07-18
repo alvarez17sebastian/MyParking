@@ -44,7 +44,7 @@ namespace MyParking.Droid.Views.VehiclesList.PatternCommand
         public void Execute()
         {
             int payment = parking.CalculatePaymentVehicle(this.vehicleDto);
-            CustomDialog customDialog = new CustomDialog();
+            VisualizerPaymentDialog customDialog = new VisualizerPaymentDialog();
             customDialog.ShowCustomDialogInformationPayment((Android.App.Activity)context, payment.ToString(), ConfirmCheckout, null);
 
         }
